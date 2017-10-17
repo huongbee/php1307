@@ -1,11 +1,20 @@
 <?php
 include_once('Controller.php');
+include_once('model/HomeModel.php');
 
 
 class HomeController extends Controller{
 
 	public function getIndex(){
-		return $this->loadView('trangchu');
+
+		$model = new HomeModel();
+		$today = $model->getFoodsToday();
+		$foods = $model->getFoods();
+		//print_r($today);
+
+		$arrData = ['today'=>$today,'foods'=>$foods];
+
+		return $this->loadView('trangchu',$arrData);
 	}
 
 
