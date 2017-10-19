@@ -74,7 +74,7 @@ $foods = $data['foods'];
         <div class="swin-sc swin-sc-product products-02 carousel-02">
          
           <div class="products nav-slider">
-            <div class="row slick-padding">
+            <div class="row slick-padding" id="jump">
               <?php foreach($foods as $monan):?>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="blog-item item swin-transition">
@@ -91,15 +91,10 @@ $foods = $data['foods'];
                 </div>
               </div>
             <?php endforeach?>
+
             </div>
           </div>
-          <ul class="pagination pagination-lg">
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-          </ul>
+          <?=$data['paginationHTML']?>
 
         </div>
         
@@ -108,3 +103,15 @@ $foods = $data['foods'];
     
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    var page = "<?php echo isset($_GET['page']) ? abs($_GET['page']) : 0?>";
+    if(page>0){
+      //window.location.hash = '#jump';
+      $('html, body').animate({
+          scrollTop: $("#jump").offset().top
+      }, 0);
+    }
+  })
+</script>

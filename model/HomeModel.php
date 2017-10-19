@@ -16,6 +16,13 @@ class HomeModel extends Connect{
 		return $this->loadAllRows();
 	}
 
+	public function getFoodsPagination($vitri,$soluong){
+		
+		$sql = "SELECT * FROM foods LIMIT $vitri,$soluong";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
+
 
 }
 
