@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 <?php 
 /**
 * Phân trang by Huong Huong
 */
-class pagination{
+class Pager{
 	private $_totalItem;// tổng số item
 	public $_nItemOnPage; // số lượng item trong 1 page
 	private $_nPageShow ; // số lượng link page hiển thị
