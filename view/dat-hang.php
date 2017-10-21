@@ -30,7 +30,7 @@
                           <tbody>
                             <tr>
                               <td>
-                                <img src="assets/images/product/product-2b.jpg" width="250px">
+                                <img src="public/restaurant-template-master/assets/images/product/product-2b.jpg" width="250px">
                                 <p><br><b>Uncle Herschel's Favorite</b></p>
                               </td>
                               <td>$25</td>
@@ -48,7 +48,7 @@
                             </tr>
                             <tr>
                               <td>
-                                <img src="assets/images/product/product-2b.jpg" width="250px">
+                                <img src="public/restaurant-template-master/assets/images/product/product-2b.jpg" width="250px">
                                 <p><br><b>Uncle Herschel's Favorite</b></p>
                               </td>
                               <td>$25</td>
