@@ -6,4 +6,8 @@ $c = new HomeController;
 $c->getIndex();
 
 
+
+
+
+
 ?>
