@@ -78,7 +78,7 @@
             <div class="container">
               <div class="open-offcanvas">&#9776;</div>
               
-              <div class="header-logo"><a href="index.html" class="logo logo-static"><img src="public/restaurant-template-master/assets/images/logo-white.png" alt="fooday" class="logo-img"></a><a href="index.html" class="logo logo-fixed"><img src="public/restaurant-template-master/assets/images/logo.png" alt="fooday" class="logo-img"></a></div>
+              <div class="header-logo"><a href="trang-chu" class="logo logo-static"><img src="public/restaurant-template-master/assets/images/logo-white.png" alt="fooday" class="logo-img"></a><a href="index.html" class="logo logo-fixed"><img src="public/restaurant-template-master/assets/images/logo.png" alt="fooday" class="logo-img"></a></div>
               <script src="public/restaurant-template-master/assets/vendors/jquery-1.10.2.min.js"></script>
               <script>
               $(function() {

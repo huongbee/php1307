@@ -67,9 +67,7 @@ class DBConnect{
 		$this->connect = NULL;
 	}
 }
-
 /*
-
 function stripUnicode($str){
     if(!$str) return false;
     $unicode = array(
@@ -95,17 +93,22 @@ function stripUnicode($str){
     return $str;
 }
 function changeTitle($str){
+	//"Chào bạn!"
+	//Chào bạn
     $str = trim($str);
     if($str=="") return "";
     $str = str_replace('"', '', $str);
     $str = str_replace("'", '', $str);
     $str = str_replace(".", '', $str);
     $str = str_replace("!", '', $str);
-    $str = stripUnicode($str);
-    $str = mb_convert_case($str, MB_CASE_LOWER,'utf-8');
-    $str = str_replace(' ', '-', $str);
+    $str = str_replace("@", '', $str);
+    $str = str_replace("&", '', $str);
+    $str = stripUnicode($str); //Chao ban
+    $str = mb_convert_case($str, MB_CASE_LOWER,'utf-8'); //chao ban
+    $str = str_replace(' ', '-', $str);  //chao-ban
     return $str;
 }
+
 
 $s = "SELECT name FROM foods";
 
@@ -113,7 +116,6 @@ $m = new DBConnect;
 $m->setQuery($s);
 $result = $m->loadAllRows();
 
-$arr = [];
 foreach ($result as $key=>$monan) {
 	$alias = changeTitle($monan->name);
 	$id = $key+1;
@@ -129,8 +131,8 @@ foreach ($result as $key=>$monan) {
 
 }
 
+
+
 */
-
-
 
 ?>
