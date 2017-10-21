@@ -1,8 +1,9 @@
+
 <?php
 
-include_once('controller/DetailFoodController.php');
-$c = new DetailFoodController;
-$c->getDetailFood();
+include_once('controller/HomeController.php');
+$c = new HomeController;
+$c->getIndex();
 
 
 ?>
