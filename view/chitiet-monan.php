@@ -1,3 +1,8 @@
+<?php
+$food = $data['food'];
+
+
+?>
 <div class="page-container">
   <div data-bottom-top="background-position: 50% 50px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -50px;" class="page-title page-product">
     <div class="container">
@@ -12,12 +17,16 @@
     <div class="container">
       <section class="product-single padding-top-100 padding-bottom-100">
         <div class="row">
+          <?php
+          
+          if($food){
+          ?>
           <div class="col-md-6">
             <div class="product-image">
               <div class="product-featured-image">
                 <div class="main-slider">
                   <div class="slides">
-                    <div class="featured-image-item"><img src="public/restaurant-template-master/assets/images/product/product-full-02.jpg" alt="fooday" class="img img-responsive"></div>
+                    <div class="featured-image-item"><img src="public/restaurant-template-master/assets/images/hinh_mon_an/<?=$food->image?>" alt="fooday" class="img img-responsive" style="height: 400px"></div>
                   </div>
                 </div>
               </div>
@@ -26,13 +35,13 @@
           <div class="col-md-6">
             <div class="product-summary">
               <div class="product-title">
-                <div class="title">Lobster Parsley Plate Lemons</div>
+                <div class="title"><?=$food->name?></div>
               </div>
               <div class="product-price">
-                <div class="price">100.000<span class="currency-symbol">vnđ</span></div>
+                <div class="price"><?=number_format($food->price)?><span class="currency-symbol">vnđ</span></div>
               </div>
               <div class="product-desc">
-                <p>Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard.</p>
+                <p><?=$food->detail?></p>
               </div>
               <div class="product-quanlity">
                 <form action="#">
@@ -45,6 +54,7 @@
               
             </div>
           </div>
+          <?php } ?>
         </div>
       </section>
       <section class="product-related padding-bottom-100">

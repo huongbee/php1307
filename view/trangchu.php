@@ -80,10 +80,21 @@ $foods = $data['foods'];
                 <div class="blog-item item swin-transition">
                   <div class="block-img"><img src="public/restaurant-template-master/assets/images/hinh_mon_an/<?=$monan->image?>" alt="<?=$monan->name?>" class="img img-responsive" style="height:250px">
                     <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol">vnđ</span> <?=number_format($monan->price)?></span></div>
-                    <div class="group-btn"><a href="chi-tiet-mon-an.html" class="swin-btn btn-link"><i class="icons fa fa-link"></i></a><a href="javascript:void(0)" class="swin-btn btn-add-to-card"><i class="fa fa-shopping-basket"></i></a></div>
+                    <div class="group-btn">
+                      <a href="detail-food.php?alias=<?=$monan->url?>&id=<?=$monan->id?>" class="swin-btn btn-link">
+                        <i class="icons fa fa-link"></i>
+
+
+  <!-- detail-food.php?alias=<?=$monan->url?>&id=<?=$monan->id?> -->
+
+                      </a>
+                      <a href="javascript:void(0)" class="swin-btn btn-add-to-card"><i class="fa fa-shopping-basket"></i></a></div>
                   </div>
                   <div class="block-content">
-                    <h5 class="title"><a href="chi-tiet-mon-an.html"><?=$monan->name?></a></h5>
+                    <h5 class="title">
+                      <a href="detail-food.php?alias=<?=$monan->url?>&id=<?=$monan->id?>"><?=$monan->name?>
+                      </a>
+                    </h5>
                     <div class="product-info">
                      <?=$monan->summary?>
                     </div>

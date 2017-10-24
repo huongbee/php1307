@@ -957,7 +957,9 @@ header.header-fixed {
   position: relative; }
   .product-single .product-summary .product-title {
     margin-bottom: 10px;
-    padding-right: 80px; }
+    padding-right: 80px; 
+    margin-bottom: 70px
+  }
     .product-single .product-summary .product-title .title {
       font-size: 45px;
       line-height: 1; }

@@ -9,7 +9,7 @@ class HomeController extends Controller{
 
 		$model = new HomeModel();
 		$today = $model->getFoodsToday();
-		$foods = $model->getFoods();
+		$foods = $model->getFoodsPagination();
 		//print_r($today);
 		$tongSP = count($foods);
 
@@ -20,7 +20,11 @@ class HomeController extends Controller{
 			$currentPage = 1;
 		}*/
 
-		$trangHientai = isset($_GET['page']) ? abs($_GET['page']) : 1;
+		$trangHientai = 1;
+		if(isset($_GET['page']) && $_GET['page']!=0 && is_numeric($_GET['page'])){
+			$trangHientai = abs($_GET['page']);
+		}
+		//$trangHientai = (int)(isset($_GET['page']) && $_GET['page']!=0) ? abs($_GET['page']) : 1;
 
 		$pager = new Pager($tongSP,$trangHientai,6,4);
 
