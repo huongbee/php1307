@@ -11,12 +11,16 @@ class DetailFoodController extends Controller{
 
 		$model = new DetailFoodModel;
 		$food = $model->getDetail($alias,$id);
+		$relatedFood = $model->getFoodByType($id);
 		
 		if($food==NULL){
 			header("Location:404.php");
 		}
 		else{
-			$arrData = ['food'=>$food];
+			$arrData = [
+				'food'=>$food,
+				'relatedFood'=>$relatedFood
+			];
 			return $this->loadView('chitiet-monan',$arrData);
 		}
 		

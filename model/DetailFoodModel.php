@@ -14,6 +14,17 @@ class DetailFoodModel extends Connect{
 		return $this->loadRow();
 	}
 
+	public function getFoodByType($id_food){
+		$sql = "SELECT * FROM foods 
+				WHERE id_type=(
+					SELECT id_type FROM foods WHERE id=$id_food)
+				ORDER BY update_at DESC
+				LIMIT 0,20";
+
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
+
 }
 
 
