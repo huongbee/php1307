@@ -20,6 +20,7 @@ class DetailFoodModel extends Connect{
 					ON p.id = f.id_url
 				WHERE f.id_type=(
 					SELECT id_type FROM foods WHERE id=$id_food)
+				AND f.id <> $id_food
 				ORDER BY f.update_at DESC
 				LIMIT 0,20";
 
