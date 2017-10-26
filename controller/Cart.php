@@ -1,5 +1,20 @@
 <?php
+/*
 
+totalQty : 2
+items : 2  [
+			id1=> ----1:spA : 
+					qty  :0
+					price:0
+					item : id, name,price,decs.....
+		  	id2=>----2:spB :
+		  			qty  :1
+					price:30000
+					item : id, name,price:30000,decs.....
+			]
+totalPrice: 50000
+
+*/
 class Cart
 {
 	public $items = null;
@@ -14,16 +29,16 @@ class Cart
 		}
 	}
 
-	public function add($item, $id, $qty=1){
+	public function add($item, $qty=1){
 		$giohang = ['qty'=>0, 'price' => $item->price, 'item' => $item];
 		if($this->items){
-			if(array_key_exists($id, $this->items)){
-				$giohang = $this->items[$id];
+			if(array_key_exists($item->id, $this->items)){
+				$giohang = $this->items[$item->id];
 			}
 		}
 		$giohang['qty'] = $giohang['qty'] + $qty;
 		$giohang['price'] = $item->price * $giohang['qty'];
-		$this->items[$id] = $giohang;
+		$this->items[$item->id] = $giohang;
 		$this->totalQty = $this->totalQty + $qty;
 		$this->totalPrice = ($this->totalPrice + $giohang['item']->price);
 		
