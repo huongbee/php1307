@@ -20,5 +20,6 @@ class CartController {
 		$_SESSION['cart'] = $cart;
 
 		print_r($_SESSION['cart']);
+		print_r($_SESSION['cart']);
 	}
 }
