@@ -114,13 +114,14 @@
 
 
         <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-sm">
+          <div class="modal-dialog modal-md">
 
             <!-- Modal content-->
             <div class="modal-content">
               <div class="modal-body">
-                <p>Đặt hàng thành công</p>
+                <h3>Đặt hàng thành công!</h3>
                 <p>Đã thêm <span id="tensp"></span> vào giỏ hàng</p>
+                <a href="checkout.php"><p>Xem giỏ hàng</p></a>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
@@ -373,6 +374,26 @@
     <script src="public/restaurant-template-master/assets/js/layout.js"></script>
     <script src="public/restaurant-template-master/assets/js/elements.js"></script>
     <script src="public/restaurant-template-master/assets/js/widget.js"></script>
+    <script>
+  $(document).ready(function() {
+      $('.btn-add-to-card').click(function(){
+        var id_sp = $(this).attr('data-id');
+        //console.log(id_sp);
+        $.ajax({
+          url:"cart.php",
+          method: "POST",
+          data: {
+            id: id_sp //biến gửi đi:giá trị line 94
+          },
+          success:function(data){
+            //console.log(data)
+            $('#tensp').html("<b>"+data+"</b>")
+            $('#myModal').modal('show');
+          }
+        })
+      })
+  });
+</script>
   </body>
 
 <!-- Mirrored from swin-themes.com/html/fooday/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Sep 2017 09:12:42 GMT -->
