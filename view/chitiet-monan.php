@@ -92,7 +92,7 @@ $relatedFood = $data['relatedFood'];
   $(document).ready(function() {
       $('.btn-add-to-card').click(function(){
         var id_sp = $(this).attr('data-id');
-        console.log(id_sp);
+        //console.log(id_sp);
         $.ajax({
           url:"cart.php",
           method: "POST",
@@ -100,6 +100,8 @@ $relatedFood = $data['relatedFood'];
             id: id_sp //biến gửi đi:giá trị line 94
           },
           success:function(data){
+            //console.log(data)
+            $('#tensp').html("<b>"+data+"</b>")
             $('#myModal').modal('show');
           }
         })

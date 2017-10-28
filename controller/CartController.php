@@ -20,7 +20,6 @@ class CartController {
 		$cart->add($item, $qty=1);
 		$_SESSION['cart'] = $cart;
 
-		print_r($_SESSION['cart']);
-		print_r($_SESSION['cart']);
+		echo $item->name;
 	}
 }
