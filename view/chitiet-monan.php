@@ -93,13 +93,16 @@ $relatedFood = $data['relatedFood'];
       $('.btn-add-to-card').click(function(){
         var id_sp = $(this).attr('data-id');
         console.log(id_sp);
-        /*$.ajax({
-          url:"",
+        $.ajax({
+          url:"cart.php",
           method: "POST",
           data: {
             id: id_sp //biến gửi đi:giá trị line 94
+          },
+          success:function(data){
+            console.log(data)
           }
-        })*/
+        })
       })
   });
 </script>
