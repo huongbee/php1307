@@ -1,5 +1,5 @@
 <?php
-/*<div id="myModal" class="modal fade" role="dialog">
+/*"<div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
 	<div class="modal-content">
 	  <div class="modal-body">
@@ -12,6 +12,6 @@
 	</div>
 
   </div>
-</div>  
+</div>  "
 */
 ?>
