@@ -100,7 +100,7 @@ $relatedFood = $data['relatedFood'];
             id: id_sp //biến gửi đi:giá trị line 94
           },
           success:function(data){
-            console.log(data)
+            $('#myModal').modal('show');
           }
         })
       })
