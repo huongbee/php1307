@@ -89,11 +89,17 @@ $relatedFood = $data['relatedFood'];
   </div>
 </div>
 <script>
-  function checkInput(id, message){
-    input = document.getElementById(id);
-    input.oninvalid = function(event){
-      event.target.setCustomValidity(message);
+  $('.quanlity-plus').click(function(){
+    var qty = $('#quanlity').val();
+    if(qty>=20){
+      $(this).removeAttr('href')
     }
-  }
-  checkInput('quanlity','Vui lòng nhập số')
+    
+  })
+  $('.quanlity-minus').click(function(){
+    var qty = $('#quanlity').val();
+    if(qty<=1){
+      $(this).removeAttr('href')
+    }
+  })
 </script>
