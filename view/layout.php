@@ -375,22 +375,34 @@
     <script src="public/restaurant-template-master/assets/js/elements.js"></script>
     <script src="public/restaurant-template-master/assets/js/widget.js"></script>
     <script>
-  $(document).ready(function() {
-      $('.btn-add-to-card').click(function(){
-        var id_sp = $(this).attr('data-id');
-        //console.log(id_sp);
+      function ajaxCart(idSP, qty=1){
         $.ajax({
           url:"cart.php",
           method: "POST",
           data: {
-            id: id_sp //biến gửi đi:giá trị line 94
+            id: idSP,
+            soluong: qty
           },
           success:function(data){
             //console.log(data)
             $('#tensp').html("<b>"+data+"</b>")
             $('#myModal').modal('show');
+            
           }
         })
+      }
+
+  $(document).ready(function() {
+      $('.btn-add-to-card').click(function(){
+        var id_sp = $(this).attr('data-id');
+        ajaxCart(id_sp);
+      })
+
+      $('.add-to-cart').click(function(){
+        var id_sp = $(this).attr('data-id');
+        var qty = $('.my-quanlity').val();
+        console.log(qty)
+        ajaxCart(id_sp,qty);
       })
   });
 </script>

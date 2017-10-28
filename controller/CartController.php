@@ -8,18 +8,27 @@ class CartController {
 
 	public function addToCart(){
 		$id = $_POST['id'];
+		if((int)$_POST['soluong'] <= 0 ){
+			$qty = 1;
+		}	
+		else{
+			$qty = (int)$_POST['soluong'];
+		}
 		$model = new CartModel();
 		$item = $model->getDetail($id);
-		
+
 		$oldCart = null;
 		if(isset($_SESSION['cart'])){
 			$oldCart = $_SESSION['cart'];
 		}
 
 		$cart = new Cart($oldCart);
-		$cart->add($item, $qty=1);
+		$cart->add($item, $qty);
 		$_SESSION['cart'] = $cart;
 
+		echo "<pre>";
+		print_r($_SESSION['cart']);
+		echo "</pre>";die;
 		echo $item->name;
 	}
 }

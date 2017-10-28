@@ -46,9 +46,9 @@ $relatedFood = $data['relatedFood'];
               <div class="product-quanlity">
                 <form action="#">
                   <div class="input-group">
-                    <input type="text" name="quanlity" placeholder="" value="1" class="form-control"><a href="javascript:void(0)" class="quanlity-plus"><i class="fa fa-plus"></i></a><a href="javascript:void(0)" class="quanlity-minus"><i class="fa fa-minus"></i></a>
+                    <input type="number" name="quanlity" placeholder="" value="1" class="form-control my-quanlity" id="quanlity" min=0 max=20  ><a href="javascript:void(0)" class="quanlity-plus"><i class="fa fa-plus"></i></a><a href="javascript:void(0)" class="quanlity-minus"><i class="fa fa-minus"></i></a>
                   </div>
-                  <div class="add-to-cart"><a href="javascript:void(0)" class="swin-btn"> <span>Add To Cart</span></a></div>
+                  <div class="add-to-cart" data-id="<?=$food->id?>"><a class="swin-btn"> <span>Add To Cart</span></a></div>
                 </form>
               </div>
               
@@ -88,3 +88,12 @@ $relatedFood = $data['relatedFood'];
     </div>
   </div>
 </div>
+<script>
+  function checkInput(id, message){
+    input = document.getElementById(id);
+    input.oninvalid = function(event){
+      event.target.setCustomValidity(message);
+    }
+  }
+  checkInput('quanlity','Vui lòng nhập số')
+</script>
