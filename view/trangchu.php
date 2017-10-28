@@ -88,7 +88,7 @@ $foods = $data['foods'];
   <!-- detail-food.php?alias=<?=$monan->url?>&id=<?=$monan->id?> -->
 
                       </a>
-                      <a href="javascript:void(0)" class="swin-btn btn-add-to-card"><i class="fa fa-shopping-basket"></i></a></div>
+                      <a class="swin-btn btn-add-to-card" data-id="<?=$monan->id?>"><i class="fa fa-shopping-basket"></i></a></div>
                   </div>
                   <div class="block-content">
                     <h5 class="title">

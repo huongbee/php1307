@@ -10,7 +10,7 @@ class CartController {
 		$id = $_POST['id'];
 		$model = new CartModel();
 		$item = $model->getDetail($id);
-
+		
 		$oldCart = null;
 		if(isset($_SESSION['cart'])){
 			$oldCart = $_SESSION['cart'];
