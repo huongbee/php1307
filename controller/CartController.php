@@ -26,9 +26,29 @@ class CartController {
 		$cart->add($item, $qty);
 		$_SESSION['cart'] = $cart;
 
-		echo "<pre>";
-		print_r($_SESSION['cart']);
-		echo "</pre>";die;
+		//echo "<pre>";
+		//print_r($_SESSION['cart']);
+		//echo "</pre>";die;
 		echo $item->name;
+	}
+
+	public function deleteCart(){
+		$id = $_POST['id'];
+		$model = new CartModel();
+
+		$oldCart = null;
+		if(isset($_SESSION['cart'])){
+			$oldCart = $_SESSION['cart'];
+		}
+
+		$cart = new Cart($oldCart);
+		$cart->removeItem($id);
+		$_SESSION['cart'] = $cart;
+		if($cart->totalPrice == 0){
+			unset($_SESSION['cart']);
+			echo 0;
+		}
+		else
+			echo number_format($cart->totalPrice);
 	}
 }

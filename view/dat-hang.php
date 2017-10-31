@@ -9,112 +9,121 @@
             </div>
           </div>
           <div class="page-content-wrapper">
+
             <section class="section-reservation-form padding-top-100 padding-bottom-100">
               <div class="container">
-                <div class="section-content">
-                  <div class="swin-sc swin-sc-title style-2">
-                    <h3 class="title"><span>Chi tiết giỏ hàng</span></h3>
-                  </div>
-                  <div class="reservation-form">
-                    <div class="swin-sc swin-sc-contact-form light mtl">
-                      <table class="table table-striped" style="text-align: center;">
-                          <thead>
-                            <tr>
-                              <th width="30%" style="text-align: center;">Product</th>
-                              <th width="20%" style="text-align: center;">Price</th>
-                              <th width="20%" style="text-align: center;">Qty.</th>
-                              <th width="20%" style="text-align: center;">Total</th>
-                              <th width="10%" style="text-align: center;">Remove</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <img src="public/restaurant-template-master/assets/images/product/product-2b.jpg" width="250px">
-                                <p><br><b>Uncle Herschel's Favorite</b></p>
-                              </td>
-                              <td>$25</td>
-                              <td>
-                              <select name="product-qty" id="product-qty" class="form-control" width="50">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                              </select>
-                              </td>
-                              <td>$25</td>
-                              <td><a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o fa-2x"></i></a></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <img src="public/restaurant-template-master/assets/images/product/product-2b.jpg" width="250px">
-                                <p><br><b>Uncle Herschel's Favorite</b></p>
-                              </td>
-                              <td>$25</td>
-                              <td>
-                              <select name="product-qty" id="product-qty" class="form-control" width="50">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                              </select>
-                              </td>
-                              <td>$25</td>
-                              <td><a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o fa-2x"></i></a></td>
-                            </tr>
-                          </tbody>
-                      </table>     
-                     
+                 <div class="section-content cart-detail">
+                  <?php
+                  if($data->items != null){
+                  ?>
+                 
+                    <div class="swin-sc swin-sc-title style-2">
+                      <h3 class="title"><span>Chi tiết giỏ hàng</span></h3>
                     </div>
-                    
-                    <div class="swin-sc swin-sc-contact-form light mtl style-full">
-                      <div class="swin-sc swin-sc-title style-2">
-                        <h3 class="title"><span>Đặt hàng</span></h3>
+                    <div class="reservation-form">
+                      <div class="swin-sc swin-sc-contact-form light mtl">
+                        <table class="table table-striped" style="text-align: center;">
+                            <thead>
+                              <tr>
+                                <th width="30%" style="text-align: center;">Product</th>
+                                <th width="20%" style="text-align: center;">Price</th>
+                                <th width="20%" style="text-align: center;">Qty.</th>
+                                <th width="20%" style="text-align: center;">Total</th>
+                                <th width="10%" style="text-align: center;">Remove</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php
+                              foreach($data->items as $key=>$sanpham):
+                              ?>
+                              <tr id="sanpham-<?=$key?>">
+                                <td>
+                                  <img src="public/restaurant-template-master/assets/images/hinh_mon_an/<?=$sanpham['item']->image?>" width="150px">
+                                  <p><br><b><?=$sanpham['item']->name?></b></p>
+                                </td>
+                                <td><b><?=number_format($sanpham['item']->price)?> vnđ </b></td>
+                                <td>
+                                <select name="product-qty" id="product-qty" class="form-control" width="50">
+                                  <?php
+                                  for($i=1; $i<=5; $i++):
+                                  ?>
+                                  <option value="<?=$i?>" <?=$sanpham['qty']==$i ? "selected" : ''?>><?=$i?></option>
+                                <?php endfor?>
+                                </select>
+                                </td>
+                                <td><b style="color:blue"><?=number_format($sanpham['price'])?> vnđ</b></td>
+                                <td><a class="remove" title="Remove this item" data-id="<?=$key?>"><i class="fa fa-trash-o fa-2x" ></i></a></td>
+                              </tr>
+                              <?php
+                              endforeach
+                            ?>
+                            <tr>
+                              <td colspan="3"></td>
+                              <td><b style="color: red; font-size: 20px" class="totalPrice"><?=number_format($data->totalPrice)?> vnđ</b></td>
+                              <td></td>
+                            </tr>
+                            </tbody>
+                        </table>     
+                       
                       </div>
-                      <form>
-                        <div class="form-group">
-                          <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                            <input type="text" placeholder="Fullname" class="form-control">
-                          </div>
+                      
+                      <div class="swin-sc swin-sc-contact-form light mtl style-full">
+                        <div class="swin-sc swin-sc-title style-2">
+                          <h3 class="title"><span>Đặt hàng</span></h3>
                         </div>
-                        <div class="form-group">
-                          <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                            <input type="text" placeholder="Email" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <div class="fa fa-map-marker"></div>
+                        <form>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                              <input type="text" placeholder="Fullname" class="form-control">
                             </div>
-                            <input type="text" placeholder="Address" class="form-control">
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <div class="fa fa-phone"></div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                              <input type="text" placeholder="Email" class="form-control">
                             </div>
-                            <input type="text" placeholder="Phone" class="form-control">
                           </div>
-                        </div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon">
+                                <div class="fa fa-map-marker"></div>
+                              </div>
+                              <input type="text" placeholder="Address" class="form-control">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon">
+                                <div class="fa fa-phone"></div>
+                              </div>
+                              <input type="text" placeholder="Phone" class="form-control">
+                            </div>
+                          </div>
 
-                        <div class="form-group">
-                          <textarea placeholder="Message" class="form-control"></textarea>
-                        </div>
-                         <div class="form-group">
-                          <div class="swin-btn-wrap center"><a href="#" class="swin-btn center form-submit"> <span>Checkout</span></a></div>
-                        </div>
-                      </form>
-                    </div>
-                    </div>
-                </div>
+                          <div class="form-group">
+                            <textarea placeholder="Message" class="form-control"></textarea>
+                          </div>
+                           <div class="form-group">
+                            <div class="swin-btn-wrap center"><a href="#" class="swin-btn center form-submit"> <span>Checkout</span></a></div>
+                          </div>
+                        </form>
+                      </div>
+                      </div>
+                  
+                  <?php 
+                  }
+                  else{
+
+                    echo '<h3 class="title" style="text-align:center"><span>Bạn chưa mua sản phẩm nào</span></h3>';
+                    header("refresh: 10; url=index.php");
+
+                  }
+                   ?>
+                 </div>
               </div>
             </section>
+
             <section data-bottom-top="background-position: 50% 100px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" class="section-reservation-service padding-top-100 padding-bottom-100">
               <div class="container">
                 <div class="section-content">
@@ -158,3 +167,30 @@
             </section>
           </div>
         </div>
+<script>
+  $(document).ready(function(){
+    $('.remove').click(function(){
+      var id = $(this).attr('data-id');
+      var action = "delete";
+      $.ajax({
+        url:'cart.php',
+        data:{
+          id: id,
+          action: action
+        },
+        type: "POST",
+        success: function(data){
+          if(parseInt(data)==0){
+            $('.cart-detail').html('<h3 class="title" style="text-align:center"><span>Giỏ hàng rỗng</span></h3>')
+            setTimeout(function(){window.location.href = "index.php"}, 10000);
+          }
+          else{
+            $('#sanpham-'+id).hide();
+            $('.totalPrice').html(data)
+          }
+          
+        }
+      })
+    })
+  })
+</script>

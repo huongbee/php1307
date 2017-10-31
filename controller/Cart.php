@@ -30,7 +30,10 @@ class Cart
 	}
 
 	public function add($item, $qty=1){
-		$giohang = ['qty'=>0, 'price' => $item->price, 'item' => $item];
+		$giohang = [
+			'qty'=>0, 
+			'price' => $item->price, 
+			'item' => $item];
 		if($this->items){
 			if(array_key_exists($item->id, $this->items)){
 				$giohang = $this->items[$item->id];
@@ -40,10 +43,10 @@ class Cart
 		$giohang['price'] = $item->price * $giohang['qty'];
 		$this->items[$item->id] = $giohang;
 		$this->totalQty = $this->totalQty + $qty;
-		$this->totalPrice = ($this->totalPrice + $giohang['item']->price);
+		$this->totalPrice = ($this->totalPrice + $qty*$giohang['item']->price);
 		
 	}
-	//xóa 1
+	//giảm số lượng đi 1 
 	public function reduceByOne($id){ 
 		$this->items[$id]['qty']--;
 		$this->items[$id]['price'] -= $this->items[$id]['item']['price'];
@@ -53,7 +56,7 @@ class Cart
 			unset($this->items[$id]);
 		}
 	}
-	//xóa nhiều
+	//xóa sản phẩm ra khỏi giỏ hàng 
 	public function removeItem($id){
 		$this->totalQty -= $this->items[$id]['qty'];
 		$this->totalPrice -= $this->items[$id]['price'];

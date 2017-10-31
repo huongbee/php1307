@@ -1,11 +1,19 @@
 <?php
 include_once('Controller.php');
-
+require_once("Cart.php");
+session_start();
 
 class CheckoutController extends Controller{
 
 	public function getCheckout(){
-		return $this->loadView('dat-hang');
+
+		$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
+		$cart = new Cart($cart);
+		// echo "<pre>";
+		// print_r($cart);
+		// echo "</pre>";
+		//session_destroy();
+		return $this->loadView('dat-hang',$cart);
 	}
 }
 
