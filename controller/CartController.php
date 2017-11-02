@@ -70,8 +70,8 @@ class CartController extends Controller{
 		$_SESSION['cart'] = $cart; //update lại session
 
 		$data = json_encode([
-			'dongiaSanpham'=>$cart->items[$id]['price'],
-			'tongtien' => $cart->totalPrice
+			'dongiaSanpham'	=>number_format($cart->items[$id]['price'])." vnđ",
+			'tongtien' 		=> number_format($cart->totalPrice)." vnđ"
 		]);
 		return $this->view('result_ajax',$data);
 		//print_r($_SESSION['cart'] );

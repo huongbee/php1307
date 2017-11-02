@@ -51,7 +51,7 @@
                                 <?php endfor?>
                                 </select>
                                 </td>
-                                <td><b style="color:blue"><?=number_format($sanpham['price'])?> vnđ</b></td>
+                                <td><b id="dongia-<?=$key?>" style="color:blue"><?=number_format($sanpham['price'])?> vnđ</b></td>
                                 <td><a class="remove" title="Remove this item" data-id="<?=$key?>"><i class="fa fa-trash-o fa-2x" ></i></a></td>
                               </tr>
                               <?php
@@ -198,7 +198,7 @@
         var soluong = $(this).val();
         console.log(id)
         console.log(soluong);
-        
+
         var action = "update";
         $.ajax({
             url:'cart.php',
@@ -209,8 +209,14 @@
             },
             type: "POST",
             success: function(data){
-              console.log(data)
-              
+                //var json = JSON.parse(data)
+                //var dongiaSanpham = json.dongiaSanpham
+                var dongiaSanpham = data.dongiaSanpham
+                var tongtien = data.tongtien
+
+                $('#dongia-'+id).html(dongiaSanpham)
+                $('.totalPrice').html(tongtien)
+                //console.log(tongtien)
             }
         })
     })
