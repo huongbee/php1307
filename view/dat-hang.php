@@ -43,7 +43,7 @@
                                 </td>
                                 <td><b><?=number_format($sanpham['item']->price)?> vnđ </b></td>
                                 <td>
-                                <select name="product-qty" id="product-qty" class="form-control" width="50">
+                                <select name="product-qty" id="product-qty" class="form-control product-qty"  width="50" data-id="<?=$key?>">
                                   <?php
                                   for($i=1; $i<=5; $i++):
                                   ?>
@@ -191,6 +191,28 @@
           
         }
       })
+    })
+
+    $('.product-qty').change(function(){
+        var  id = $(this).attr('data-id');
+        var soluong = $(this).val();
+        console.log(id)
+        console.log(soluong);
+        
+        var action = "update";
+        $.ajax({
+            url:'cart.php',
+            data:{
+                id: id,
+                action: action,
+                qty: soluong
+            },
+            type: "POST",
+            success: function(data){
+              console.log(data)
+              
+            }
+        })
     })
   })
 </script>
