@@ -23,7 +23,7 @@ class Cart
 
 	public function __construct($oldCart){
 		$oldCart = $this->fixObject($oldCart);
-		if($oldCart){
+		if($oldCart){ 	
 			$this->items = $oldCart->items;
 			$this->totalQty = $oldCart->totalQty;
 			$this->totalPrice = $oldCart->totalPrice;

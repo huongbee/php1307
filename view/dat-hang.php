@@ -80,6 +80,21 @@
                           </div>
                           <div class="form-group">
                             <div class="input-group">
+                              
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                Giới tính:
+                              </div>
+                              
+                              <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                <label style="margin-right:15px"><input type="radio" value="nữ" name="gender"> Nữ</label>
+                                <label><input type="radio" value="nnam" name="gender"> Nam</label>
+                              </div>
+                              
+                              
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group">
                               <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                               <input type="text" placeholder="Email" class="form-control">
                             </div>
