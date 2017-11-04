@@ -1,10 +1,17 @@
 <?php
 //
-require_once("Cart.php");
+session_start();
+//require_once("Cart.php");
 require_once('Controller.php');
 require_once("model/CartModel.php");
-session_start();
+//
 
+// function __autoload($className){
+// 	require_once("controller/Cart.php");
+// }
+// spl_autoload_register(function(){
+// 	require_once("controller/Cart.php");
+// });
 class CartController extends Controller{
 
 	public function addToCart(){
@@ -35,7 +42,7 @@ class CartController extends Controller{
 
 	public function deleteCart(){
 		$id = $_POST['id'];
-
+		//unset($_SESSION['cart']->items[$id]);
 		$oldCart = null;
 		if(isset($_SESSION['cart'])){
 			$oldCart = $_SESSION['cart'];

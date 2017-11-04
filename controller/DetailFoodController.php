@@ -21,7 +21,7 @@ class DetailFoodController extends Controller{
 				'food'=>$food,
 				'relatedFood'=>$relatedFood
 			];
-			return $this->loadView('chitiet-monan',$arrData);
+			return $this->loadView('chitiet-monan',$arrData,'Detail Food');
 		}
 		
 	}

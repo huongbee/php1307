@@ -41,7 +41,7 @@ class HomeController extends Controller{
 			'paginationHTML'=>$paginationHTML
 		];
 
-		return $this->loadView('trangchu',$arrData);
+		return $this->loadView('trangchu',$arrData,'Home');
 	}
 
 

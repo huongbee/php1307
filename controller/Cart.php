@@ -22,11 +22,18 @@ class Cart
 	public $totalPrice = 0;
 
 	public function __construct($oldCart){
+		$oldCart = $this->fixObject($oldCart);
 		if($oldCart){
 			$this->items = $oldCart->items;
 			$this->totalQty = $oldCart->totalQty;
 			$this->totalPrice = $oldCart->totalPrice;
 		}
+		
+	}
+	private function fixObject (&$object){
+		if (!is_object ($object) && gettype ($object) == 'object')
+			return ($object = unserialize (serialize ($object)));
+		return $object;
 	}
 
 	public function add($item, $qty=1){

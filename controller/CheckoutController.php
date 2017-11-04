@@ -1,7 +1,8 @@
 <?php
+session_start();
 include_once('Controller.php');
 require_once("Cart.php");
-session_start();
+
 
 class CheckoutController extends Controller{
 
@@ -13,7 +14,7 @@ class CheckoutController extends Controller{
 		// print_r($cart);
 		// echo "</pre>";
 		//session_destroy();
-		return $this->loadView('dat-hang',$cart);
+		return $this->loadView('dat-hang',$cart,'Checkout');
 	}
 }
 
