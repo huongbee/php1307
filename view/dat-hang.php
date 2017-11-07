@@ -1,3 +1,4 @@
+
 <div class="page-container">
           <div data-bottom-top="background-position: 50% 50px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -50px;" class="page-title page-reservation">
             <div class="container">
@@ -13,7 +14,26 @@
             <section class="section-reservation-form padding-top-100 padding-bottom-100">
               <div class="container">
                  <div class="section-content cart-detail">
+
                   <?php
+
+                  if(isset($_COOKIE['error'])){
+                  ?>
+                  <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?=$_COOKIE['error']?>
+                  </div>
+                  <?php
+                  } 
+                  if(isset($_COOKIE['success'])){
+                  ?>
+                  <div class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?=$_COOKIE['success']?>
+                  </div>
+                    <?php
+                  }
+
                   if($data->items != null){
                   ?>
                  
@@ -71,11 +91,11 @@
                         <div class="swin-sc swin-sc-title style-2">
                           <h3 class="title"><span>Đặt hàng</span></h3>
                         </div>
-                        <form>
+                        <form method="POST" action="checkout.php">
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                              <input type="text" placeholder="Fullname" class="form-control">
+                              <input type="text" name="fullname" placeholder="Fullname" class="form-control" required>
                             </div>
                           </div>
                           <div class="form-group">
@@ -96,7 +116,7 @@
                           <div class="form-group">
                             <div class="input-group">
                               <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                              <input type="text" placeholder="Email" class="form-control">
+                              <input type="text" name="email" placeholder="Email" class="form-control" required>
                             </div>
                           </div>
                           <div class="form-group">
@@ -104,7 +124,7 @@
                               <div class="input-group-addon">
                                 <div class="fa fa-map-marker"></div>
                               </div>
-                              <input type="text" placeholder="Address" class="form-control">
+                              <input type="text" name="address" placeholder="Address" class="form-control" required>
                             </div>
                           </div>
                           <div class="form-group">
@@ -112,15 +132,19 @@
                               <div class="input-group-addon">
                                 <div class="fa fa-phone"></div>
                               </div>
-                              <input type="text" placeholder="Phone" class="form-control">
+                              <input type="text" name="phone" placeholder="Phone" class="form-control" required>
                             </div>
                           </div>
 
                           <div class="form-group">
-                            <textarea placeholder="Message" class="form-control"></textarea>
+                            <textarea placeholder="Message" name="message" class="form-control"></textarea>
                           </div>
                            <div class="form-group">
-                            <div class="swin-btn-wrap center"><a href="#" class="swin-btn center form-submit"> <span>Checkout</span></a></div>
+                            <div class="swin-btn-wrap center">
+                              <button type="submit" name="btnCheckout" class="swin-btn center form-submit">
+                                 <span>Checkout</span>
+                              </button>
+                              </div>
                           </div>
                         </form>
                       </div>
@@ -128,7 +152,7 @@
                   
                   <?php 
                   }
-                  else{
+                  elseif(!isset($_COOKIE['success'])){
 
                     echo '<h3 class="title" style="text-align:center"><span>Bạn chưa mua sản phẩm nào</span></h3>';
                     header("refresh: 10; url=index.php");
