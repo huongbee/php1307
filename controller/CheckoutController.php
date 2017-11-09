@@ -4,7 +4,7 @@ include_once('Controller.php');
 require_once("Cart.php");
 require_once('model/CheckoutModel.php');
 require_once('inc/function.php');
-
+require_once('inc/mailer.php');
 
 class CheckoutController extends Controller{
 
@@ -19,6 +19,14 @@ class CheckoutController extends Controller{
 	}
 
 	public function postCheckout(){
+		// echo $tokenDate= date('Y-m-d h:i:s',time());
+		// echo "<br>";
+		// echo $tokenTime = strtotime($tokenDate);
+		// echo "<br>";
+		// echo date('Y-m-d h:i:s',$tokenTime);
+		// echo "<br>";
+		// //echo time();
+		// die;
 		$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
 		$cart = new Cart($cart);
 		
@@ -42,6 +50,8 @@ class CheckoutController extends Controller{
 			$note = isset($_POST['message']) ? $_POST['message'] : '';
 			$token = createToken();
 			$tokenDate= date('Y-m-d h:i:s',time());
+			$tokenTime = strtotime($tokenDate);
+			//die;
 			$idBill = $model->insertBill($idCustomer,$dateOrder,$total,$note,$token,$tokenDate);
 
 			if($idBill){
@@ -54,9 +64,21 @@ class CheckoutController extends Controller{
 						echo "Lỗi"; //transaction
 					}
 				}	
+				//gửi mail
+
+				$link = "http://localhost/php1307/xac-nhan-don-hang.php?token=$token&t=$tokenTime";
+				$hinh = "http://localhost/php1307/public/restaurant-template-master/assets/images/hinh_mon_an/banh_chung.jpg";
+				$noidungMail = "Chào bạn $fullname,
+					Vui lòng chọn link bên dưới để xác nhận đơn hàng:
+					$link
+
+					<img src='$hinh'>
+				";
+				Mailer($fullname, $email,"Xác nhận đơn hàng",$noidungMail);
+				
+
 				unset($_SESSION['cart']);
 				unset($cart);
-				//gửi mail
 
 				setcookie('success',"Đặt hàng thành công, Vui lòng kiểm tra hộp thư để xác nhận đơn hàng.",time()+5);
 			}
@@ -72,6 +94,17 @@ class CheckoutController extends Controller{
 		//echo "13323";
 		//return $this->loadView('dat-hang',$cart,'Checkout');
 		header("location:checkout.php");
+	}
+
+
+	function acceptMail(){
+		echo $token = $_GET['token'];
+		echo "<br>";
+		echo $tokenDate = $_GET['t'] + (24*60*60); //thời gian trong db so sánh với time hiện tại time()
+		echo "<br>";
+		$now = time();
+		echo ($tokenDate-$now ) ;//> 0 còn hạn
+		
 	}
 }
 
