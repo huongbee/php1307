@@ -40,5 +40,13 @@ class CheckoutModel extends Connect{
         return $this->execute();
     }
 
+
+    public function updateBillAcceptMail($token){
+       // echo $token; die;
+        $sql = "UPDATE bills SET token=NULL, token_date=NULL, status=1 WHERE token='$token'";
+        $this->setQuery($sql);
+        $this->execute();
+        return $this->rowCount();
+    }
     
 }

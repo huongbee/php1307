@@ -1,2 +1,17 @@
 RewriteEngine On
 RewriteRule ^trang-chu$ index.php
+
+RewriteRule ^([a-zA-Z0-9-]+)/([0-9]+)$ detail-food.php?alias=$1&id=$2
+
+#model/test.txt
+RewriteRule ^/?model\/test.txt$ - [F,L]
+RewriteRule ^/?readme.md$ - [F,L]
+
+Allow from all
+Deny from 192.168.1.113
+
+
+IndexIgnore *.md *.jpg
+
+
+ErrorDocument 404 /php1307/404.php

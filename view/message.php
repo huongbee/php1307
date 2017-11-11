@@ -45,8 +45,10 @@
       <div class="page-container">
         <div class="page-404 section-full-screen">
           <div class="content-wrapper"><img src="public/restaurant-template-master/assets/images/404/image-main.png" alt="fooday" class="img-main img-responsive">
-            <div class="title">OOOP... The Page Not Found</div>
-            <div class="bt-wrapper"><a href="contact.html" class="swin-btn center"> <span>Get Help</span></a><a href="index.html" class="swin-btn center btn-transparent btn-right"> <span>Back Home</span></a></div>
+            <div class="title"><?=$data?></div>
+            <div class="bt-wrapper">
+                <a href="./" class="swin-btn center"> <span>Go to Home Page</span></a>
+            </div>
           </div>
         </div>
       </div>

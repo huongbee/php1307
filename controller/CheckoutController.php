@@ -98,13 +98,30 @@ class CheckoutController extends Controller{
 
 
 	function acceptMail(){
-		echo $token = $_GET['token'];
-		echo "<br>";
-		echo $tokenDate = $_GET['t'] + (24*60*60); //thời gian trong db so sánh với time hiện tại time()
-		echo "<br>";
-		$now = time();
-		echo ($tokenDate-$now ) ;//> 0 còn hạn
+		$token = $_GET['token'];
+		if(strlen($token)!=32){
+			$message = "Lỗi token";
+		}
+		else{
+			$tokenTime = $_GET['t']; //thời gian trong db so sánh với time hiện tại time()
 		
+			$now = date('Y-m-d h:i:s',time());
+			$nowTime = strtotime($now);
+			if($nowTime - $tokenTime <=86400){
+				//còn hạn
+				$model = new CheckoutModel;
+				$result = $model->updateBillAcceptMail($token);
+
+				if($result>0){
+					$message = "Đơn hàng của bạn đã được xác nhận thành công!";
+				}
+				else $message = "Sai thông tin";
+			}
+			else{
+				$message = "Hết hạn xác nhận đơn hàng, <br>vui lòng đặt hàng lại";
+			}
+		}
+		return $this->view('message',$message);
 	}
 }
 

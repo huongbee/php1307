@@ -49,9 +49,13 @@ class Connect{
 		return $this->_mysqli->insert_id;
 	}
 
+	public function rowCount(){
+		return $this->_mysqli->affected_rows;
+	}
+
 	public function disconnect(){
 		$this->_mysqli = NULL;
 	}
 }
-
+//Y378bxxqR3AgoD2s4KN5KYcdv8AUX1OA1
 ?>
