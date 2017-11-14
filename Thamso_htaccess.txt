@@ -1,0 +1,125 @@
+﻿file .htaccess hay được gọi là hypertext access là một file cấu hình sử dụng cho webserver chạy Apache, có tác dụng trên thư mục hiện hành và tất cả thư mục con, 
+nó được dùng để thiết lập các tùy chọn như thực thi hay loại bỏ tính năng, quản lí các truy cập website v.v…
+======================================================================
+Ý nghĩa ký hiệu định nghĩa trong .htaccess
+
+# : cho phép server bỏ qua dòng này
+[F] : Forbidden, hướng dẫn server trả về lỗi 403 cho client
+[L] : Last rule, hướng dẫn server ngừng ghi lại sau khi một chỉ thị đã được xử lý
+[N] : Next, chỉ dẫn cho Apache trả về luật rewrite cho tới khi tất cả các chỉ thị rewrite được hoàn tất.
+[G]: Gone, chỉ dẫn server chuyển thông điệp Gone
+[P]: Proxy, chỉ dẫn server sử dụng các request cung cấp bởi mod_proxy
+[C]: Chain, chỉ dẫn server gắn luật trước với luật sau nó
+[R]: Redirect, hướng dẫn Apache đưa ra một chuyển hướng
+[NC]: No case, xác định bất cứ trường hợp nào liên quan tới nó là vô lý (Không thể xảy ra)
+[PT]: Pas Through: chỉ dẫn mod_rewrite để vượt qua cơ chế ghi lại URL cho các xử lý xa hơn
+[OR]: Or, là cú pháp logic bình thường (biểu thức kết hợp đúng khi một trong hai biểu thức con của nó đúng)
+[NE]: No Escape: hướng dẫn server lọc đầu ra
+[NS]: No Subresquest: hướng dẫn server giữ chỉ thị nếu là một request con từ bên trong
+[QSA]: gắn thêm chuỗi truy vấn vào cuối URL
+[S=x]: Skip: chỉ dẫn server dừng lại x luật
+[E=variable:value]: Environment Variale: chỉ dẫn server thiết lập giá trị tài nguyên
+[T=MIME-type]: Mime Type: mô tả loại mime của tài nguyên đích
+[]: xác định một tập các ký tự trong đó bất cứ ký tự nào có trong ngoặc xuất hiện sẽ được match
+[]+: tập các ký tự trong đó bất cứ kết hợp nào với nó cũng được match
+[0-9] : match với tất cả các ký tự từ a-z, theo bảng chữ cái. Có thể có thêm: [a-zA-Z]
+a{n}: xác định số ký tự sẽ mở rộng cùng với ký tự đầu, tức là khi match được ký tự đầu sẽ lấy thêm bao nhiêu ký tự tiếp theo. Ví dụ: xa{3} sẽ lấy: xas, xad, …
+a{n,} : như a{n} nhưng có thể lấy 3 hoặc nhiều hơn
+a{n,m}: như a{n} nhưng sẽ lấy trong khoảng từ n tới m
+(): nhóm các ký tự lại với nhau, xem chúng như 1 đơn vị đơn lẻ
+^: ghi chú bắt đầu chuỗi regex
+$: ghi chú kết thúc chuỗi regex
+? : cho phép chọn lựa ký tự.Ví dụ: monzas? sẽ match với monza hoặc monzas
+! : mô tả một phủ định, sẽ match với tất cả thứ gì khác với các ký tự sau !
+. : thể hiện cho bất cứ ký tự đơn nào
++: match với một hoặc nhiều ký tự
+*: match với 0 hoặc nhiều ký tự
+|: phép hoặc logic
+\: thêm vào trước các ký tự đặc biệt để có thể sử dụng chúng như các ký tự bình thường
+.* : không có ký tự nào hoặc nhiều ký tự bất kỳ
+^$: định nghĩa một chuỗi rỗng
+^.*$: sử dụng để match mọi thứ
+[^/.]: định nghĩa 1 ký tự là “/” hoặc “.”
+[^/.]+: định nghĩa bất cứ số lượng ký tự nào chứa “/” hoặc “.”
+http://: là một chuỗi bình thường
+^domain.*: định nghĩa một chuỗi bắt đầu với “domain”
+^domain\.com$: xác định sự mở rộng của chuỗi “domain.com”
+-d: kiểm tra nếu chuỗi là một directory
+-f: kiểm tra nếu một chuỗi là một file
+-s: kiểm tra nếu file trong chuỗi kiểm tra có 1 giá trị khác 0
+=============================================================
+Trong đó mã số lỗi là mã số của các lỗi phát sinh, sau đây là những lỗi hay gặp:
+
+
+
+
+401 – Authorization Required (cần password để truy cập)
+400 – Bad request (Lỗi do yêu cầu)
+403 – Forbidden (không được vào)
+404 – Wrong page (lỗi trang, không tìm thấy…)
+500 – Internal Server Error (lỗi server)
+
+ErrorDocument 404 /laptrinhvien/404.html
+ErrorDocument 401 /laptrinhvien/401.html
+=============================================================
+#don't allow access to file fileName
+    RewriteRule ^/?folderName\/fileName$ - [F,L]
+
+=============================================================
+Cấm truy cập từ tất cả các IP: 
+	Deny from all
+Cấm truy cập từ một địa chỉ IP cụ thể: 
+	Deny from 192.168.1.113 
+
+Cấm truy cập từ một dãy địa chỉ IP cụ thể
+	Deny from 192.168.1
+
+Cho phép truy cập từ tất cả các IP 
+ 	Allow from all
+
+Cho phép truy cập từ tất cả các IP ngoại trừ IP 192.168.1.113
+	Allow from all
+	Deny from 192.168.1.113
+
+Cho phép truy cập từ 1 dãy IP ngoại trừ IP 192.168.1.113 
+	Allow from 192.168.1
+	Deny from 192.168.1.113
+
+
+# Không cho truy cập vào image
+
+# <Files "image.jpg">
+# deny from all
+# </Files>
+
+# Không cho truy cập vào *.jpg
+
+<Files "*.jpg">
+deny from all
+</Files>
+
+
+Không cho phép view 
+Options -Indexes
+
+Cho phép view 
+Options +Indexes
+
+Không cho phép view tất cả các tập tin
+IndexIgnore *
+
+Không cho phép view tất cả các tập tin php
+IndexIgnore *.php *.jpg
+
+
+
+
+
+
+
+
+
+
+
+
+
